@@ -12,7 +12,7 @@ class DisplayPost{
 	               <ul>
 	                  <li><a href="#">Categoria: ${post.categoria.nombre}</a></li>
 	                  <li><a href="#">Autor: ${post.autor.nombre}</a></li>
-	                  <li>Posteado el ${post.fechaCreacion}</li>
+	                  <li>Creado el ${post.fechaCreacion}</li>
 	              </ul> 
 	          </article>`).join('')}
 	          </section>`

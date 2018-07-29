@@ -5,33 +5,51 @@ class CrearPost{
 
 
    mostrarCrearPost(){
-    const  template = `
-      <section class="main-crear-post">
-      <h2 class="titulo-main">Crear Post</h2>
-      <form>
-      <input type="text" id="crear-titulo" name="crear-titulo" placeholder="Titulo">
-      <input type="text" id="crear-subtitulo" name="crear-subtitulo" placeholder="Subtitulo">
-      <select id="seleccionarCat-crearPost">
-             <option selected disabled>Selecionar Categoria</option>
-          ${categorias.map(categoria =>
-            `<option value="${categoria.id}">${categoria.nombre}</option>`
-          ).join('')}
-        </select>
-        </select>
-    <label for="cuerpo"><h3>Cuerpo:</h3></label>
-    <input name="cuerpo" id="crear-cuerpo" type="hidden">
-    <div id="editor"></div>
-      <h3>Tags:</h3>
-      <textarea id="-crear-tag" name="tag" rows="5"></textarea>
-      <button id="btn-publicar-post">Publicar</button>
-      </form>
-      </section>`;
-      document.querySelector('#panel-main').innerHTML = template;
+	    const  template = `
+	        <section class="main-crear-post">
+	        <h2 class="titulo-main">Crear Post</h2>
+	        <form id="form-crearPost">
+	        
+	        <div class="contenedorFieldsetCrearPost">
+	        <fieldset class="fieldsetCrearPost">
+	        <legend>Encabezado</legend>
+	        <label for="titulo"><h3>Titulo:</h3></label>
+	        <input type="text" id="crear-titulo" name="crear-titulo" placeholder="Titulo" required>
+	        <label for="subtitulo"><h3>Subtitulo:</h3></label>
+	        <input type="text" id="crear-subtitulo" name="crear-subtitulo" placeholder="Subtitulo" required>
+	        </fieldset>  
+
+	        <fieldset class="fieldsetCrearPost">
+	        <legend>Categoria</legend>
+	        <label for="categoria"><h3>Categoria:</h3></label>
+	        <select id="seleccionarCat-crearPost">
+	            <option selected disabled>Selecionar Categoria</option>
+	            ${categorias.map(categoria =>
+	              `<option value="${categoria.id}">${categoria.nombre}</option>`
+	            ).join('')}
+	          </select>
+	          <label for="tag"><h3>Tags (Opcional):</h3></label>
+	       <input type="text" id="crear-tag" name="crear-tag" placeholder="Separar con comas">
+	       </fieldset>   
+	       </div>
+	       <fieldset class="fieldsetCrearPost fieldsetCuerpo">
+	       <legend>Cuerpo</legend>
+	      <input name="cuerpo" id="crear-cuerpo" type="hidden" required>
+	      <div id="editor"></div>
+	      </fieldset>
+	        <button id="btn-publicar-post">Publicar</button>
+	        </form>
+	        </section>`;
+      
+	    document.querySelector('#panel-main').innerHTML = template;
+	   
       let selectCategoria = document.querySelector('#seleccionarCat-crearPost');
       selectCategoria.addEventListener('change', (e)=>{
       	this.catSelect = e.target.value;
       });
+      
       this.renderEditor();
+    
   }
 
     renderEditor(){
